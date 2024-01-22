@@ -1,3 +1,4 @@
+# Importar las bibliotecas necesarias
 import streamlit as st
 import requests
 import json
