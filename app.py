@@ -4,30 +4,34 @@ import requests
 import json
 
 def main_page():
+  # Crear un título para la página principal
+  st.title("Formulario de registro")
 
-  name = st.text_input("Ingresa tu nombre")
-  mail = st.text_input("Ingresa tu correo")
+  # Crear campos de entrada de texto para el nombre y el correo electrónico
+  name = st.text_input("Ingresa tu nombre")  # Recoger el nombre del usuario
+  mail = st.text_input("Ingresa tu correo")  # Recoger el correo electrónico del usuario
 
+  # Crear un botón para enviar la información
   if st.button('Enviar información'):
      
-      # Definir endpoint
-      # url = 'https://4507-38-43-130-92.ngrok-free.app/users'
+      # Definir la URL del endpoint de la API
+      url = 'https://0d8e-38-43-130-92.ngrok-free.app/users'
 
-      # Definir la data que se enviará a la API
+      # Crear un diccionario con los datos a enviar a la API
       data = {"name": name, 
               "email": mail}
 
-      # Parámetros adicionales enviados con la solicitud
+      # Definir los encabezados de la solicitud
       headers = {"Content-Type": "application/json"}
 
-      # Obtener respuesta a solicitud
+      # Enviar la solicitud POST a la API
       response = requests.post(url, 
                               data=json.dumps(data), 
                               headers=headers)
 
-      # Obtener e imprimir de respuesta
+      # Obtener el mensaje de la respuesta y mostrarlo en la aplicación
       st.text(response.json()["message"])
 
-# Punto de entrada de la aplicación Streamlit
+# Punto de entrada principal de la aplicación Streamlit
 if __name__ == "__main__":
     main_page()
